@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>com.vidya.assignment</groupId>
-    <artifactId>employee-details</artifactId>
+    <artifactId>employee-details-processing</artifactId>
     <version>0.0.1-dev</version>
-    <name>employee-details</name>
-    <description>Assignment project for Global Tech</description>
+    <name>eEmployee Details Processing</name>
+    <description>Employee Details Processing - Assignment project for Global Tech</description>
 
     <properties>
         <java.version>17</java.version>
