@@ -122,6 +122,34 @@ class EmployeeControllerTest {
     }
 
     @Test
+    void createEmployee_exception_validation() throws Exception {
+        employeeDTO = EmployeeDTO.builder()
+                .id("1")
+                .employeeId(null)
+                .firstName(null)
+                .lastName(null)
+                .dateOfBirth(LocalDate.now())
+                .email("joneXXgmail.com")
+                .phoneNo("123456789sdsdsd")
+                .build();
+
+        when(domainService.create(any())).thenReturn(employeeDTO);
+
+        String json = objectMapper.writeValueAsString(employeeDTO);
+
+        mockMvc.perform(
+                        post("/employee-details")
+                                .param("dataSource", "db")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(json)
+                )
+                .andExpect(status().is4xxClientError())
+                .andExpect(content().json("{\"code\":\"VAL_001\",\"message\":\"dateOfBirth=Date of birth must be a past date;email=Invalid email format;employeeId=Employee Id is required;firstName=Employee first name is required;lastName=Employee last name is required;phoneNo=Invalid international phone number\"}"));
+
+        verify(domainService, times(0)).create(any());
+    }
+
+    @Test
     void findAllEmployees() throws Exception {
         when(domainService.getAll()).thenReturn(employeeDTOList);
         String json = objectMapper.writeValueAsString(employeeDTOList);
