@@ -12,7 +12,7 @@
     <groupId>com.vidya.assignment</groupId>
     <artifactId>employee-details-processing</artifactId>
     <version>0.0.1-dev</version>
-    <name>eEmployee Details Processing</name>
+    <name>Employee Details Processing</name>
     <description>Employee Details Processing - Assignment project for Global Tech</description>
 
     <properties>
